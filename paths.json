@@ -1,7 +1,11 @@
 {
   "mappings": [
-    "/content/aem-block-collection/:/",
-    "/content/aem-block-collection/metadata:/metadata.json",
-    "/content/aem-block-collection/configuration:/.helix/config.json"
+    "/content/bhellema-xwalk-bp/:/",
+    "/content/bhellema-xwalk-bp/configuration:/.helix/config.json",
+    "/content/bhellema-xwalk-bp/metadata:/metadata.json",
+    "/content/bhellema-xwalk-bp/tools/sidekick/library:/tools/sidekick/library.json"
+  ],
+  "includes": [
+    "/content/bhellema-xwalk-bp/"
   ]
 }
