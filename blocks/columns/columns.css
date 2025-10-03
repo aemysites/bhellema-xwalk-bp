@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -30,4 +31,66 @@
     flex: 1;
     order: unset;
   }
+}
+
+
+.columns {
+  background: #F7F7F3;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Hide unwanted elements, keep only the first <p> visible */
+.columns h2,
+.columns .columns-img-col,
+.columns .button-container,
+.columns p:not(:first-of-type) {
+  display: none;
+}
+
+/* Center the inner block vertically and horizontally */
+.columns .block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  min-height: 64px;
+}
+
+/* Use a flex layout for the main row to center content horizontally */
+.columns .columns-2-cols {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Use grid for perfect centering of the innermost container */
+.columns .columns-2-cols div {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  min-height: 32px;
+  box-sizing: border-box;
+}
+
+/* Adjust the paragraph for optimal line length and typographic balance */
+.columns p {
+  color: #222;
+  font-size: 15px;
+  line-height: 1.25;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
 }
