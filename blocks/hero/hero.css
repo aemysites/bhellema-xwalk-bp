@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -6,28 +7,27 @@
 .hero {
   position: relative;
   padding: 0;
-  min-height: 599px;
-  width: 100%;
+  min-height: 75vh;
+  width: 100vw;
   border-radius: 18px;
   overflow: hidden;
   display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   margin: 0;
 }
 
 .hero h1 {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 0 0.5rem;
   color: #fff;
-  font-size: 56px;
-  line-height: 1.1;
-  margin-bottom: 12px;
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  line-height: 1.05;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.01em;
   text-align: left;
-  margin-top: 0;
+  text-shadow: 0 3px 32px rgb(0 0 0 / 56%);
+  padding: 0;
 }
 
 .hero picture {
@@ -54,43 +54,50 @@
 .hero div img {
   position: absolute;
   inset: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   object-fit: cover;
   border-radius: 18px;
   display: block;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
+  left: 0;
+  top: 0;
 }
 
-/* Overlay panel: fill full height, reduced top padding and gap for compactness */
 .hero div + div {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 2vw;
+  min-width: 0;
+  justify-content: center;
+  background: none;
+  border: none;
+  box-sizing: border-box;
 }
 
 .hero div + div div {
-  background: rgb(36 36 36 / 60%);
-  border: 2px solid #fff;
-  border-radius: 18px;
-  padding: 18px 44px 32px 36px;
-  margin: 0 0 0 18px;
-  max-width: 520px;
-  height: 100%;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  max-width: 900px;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: flex-start;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-/* Responsive: overlay panel stacks, full width, reduced padding */
 @media (width <= 900px) {
   .hero {
     min-height: 420px;
@@ -107,15 +114,12 @@
   }
 }
 
-/* Heading styling */
-
 @media (width <= 900px) {
   .hero h1 {
     font-size: 36px;
   }
 }
 
-/* Paragraph styling */
 .hero p:not(.button-container) {
   color: #ccc;
   font-size: 18px;
@@ -124,12 +128,10 @@
   text-align: left;
 }
 
-/* Remove bottom margin for last paragraph in overlay */
 .hero div + div div p:not(.button-container):last-child {
   margin-bottom: 0;
 }
 
-/* Button container alignment */
 .hero .button-container {
   display: flex;
   gap: 18px;
@@ -137,7 +139,6 @@
   margin-bottom: 0;
 }
 
-/* Button specific styles */
 .hero-container .hero-wrapper .block.hero .button {
   background: transparent;
   color: #f3f3f3;
@@ -155,4 +156,102 @@
   background: #fff;
   color: #242424;
   border-color: #fff;
+}
+
+/* Make the hero image fill the container as a background */
+
+/* Add a subtle dark overlay for text contrast */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgb(20 20 20 / 37%);
+  z-index: 1;
+}
+
+/* Center the main hero content both vertically and horizontally */
+
+/* Stack content vertically and center as a cohesive group */
+
+/* All text centered and spaced for vertical grouping */
+.hero h1,
+.hero p {
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Subheading styles (tight vertical grouping with heading and buttons) */
+.hero h1 + p {
+  color: rgb(255 255 255 / 93%);
+  font-size: 1.17rem;
+  line-height: 1.4;
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+  padding: 0;
+}
+
+/* Button row styles - always horizontal and centered */
+.hero p:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Button styles for hero links */
+.hero p:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 2.4em;
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  background: transparent;
+  color: #fff;
+  font-size: 1.09rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin: 0;
+  box-shadow: 0 2px 16px rgb(0 0 0 / 12%);
+}
+
+.hero p:last-child a:hover,
+.hero p:last-child a:focus {
+  background: #fff;
+  color: #222;
+}
+
+/* Responsive adjustments for mobile */
+@media (width <= 900px) {
+  .hero {
+    min-height: 48vh;
+    width: 100vw;
+    padding: 0;
+  }
+
+  .hero div + div {
+    max-width: 98vw;
+    padding: 0 1vw;
+    height: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 7vw, 2.7rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero div + div div {
+    gap: 0.7rem;
+  }
+
+  .hero h1 + p {
+    margin-bottom: 0.4rem;
+  }
 }
