@@ -1,8 +1,8 @@
+/* stylelint-disable no-descending-specificity */
 .accordion details {
   border: 1px solid #dadada;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
 .accordion details + details {
   margin-top: 24px;
 }
@@ -62,4 +62,112 @@
 .accordion details[open] .accordion-item-body {
   border-top: 1px solid #dadada;
   background-color: var(--background-color);
+}
+
+
+.accordion {
+  background: #FAFAF6;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.accordion details.accordion-item {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #E0E0E0;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.accordion details.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Accordion summary as flex row: text left, chevron right */
+.accordion summary.accordion-item-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 32px;
+  background: transparent;
+  outline: none;
+  min-height: 24px;
+  transition: background 0.2s;
+  position: relative;
+  border: none;
+}
+
+/* Remove default marker */
+.accordion summary.accordion-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary.accordion-item-label::marker {
+  display: none;
+}
+
+/* Text styling */
+.accordion summary.accordion-item-label p {
+  font-size: 15px;
+  color: #444;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
+}
+
+/* If a chevron icon (SVG or DOM element) exists in summary, style it */
+.accordion summary.accordion-item-label svg,
+.accordion summary.accordion-item-label .chevron-icon {
+  margin-left: 12px;
+  color: #444;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  align-self: center;
+  transition: transform 0.2s;
+
+  /* No absolute positioning so it aligns with text flex end */
+}
+
+/* Rotate chevron on open */
+.accordion details[open] summary.accordion-item-label svg,
+.accordion details[open] summary.accordion-item-label .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* Accordion body (the expandable content) */
+.accordion .accordion-item-body {
+  padding: 12px 32px 0;
+  font-size: 15px;
+  color: #444;
+  font-weight: 400;
+  margin: 0;
+  background: transparent;
+}
+
+/* Remove space between consecutive items */
+.accordion details.accordion-item + details.accordion-item {
+  margin-top: 0;
+}
+
+/* Responsive: reduce padding on narrow screens */
+@media (width <= 900px) {
+  .accordion {
+    max-width: 100%;
+  }
+
+  .accordion summary.accordion-item-label,
+  .accordion .accordion-item-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
