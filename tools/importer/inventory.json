@@ -425,11 +425,11 @@
       ]
     },
     {
-      "name": "Hero",
+      "name": "Columns",
       "cluster": 13,
-      "source": "Hero",
-      "target": "Hero (hero13)",
-      "key": "hero13",
+      "source": "Columns",
+      "target": "Columns (columns13)",
+      "key": "columns13",
       "instances": [
         {
           "url": "https://www.wknd-trendsetters.site/blog/fashion-trends-young-style",
