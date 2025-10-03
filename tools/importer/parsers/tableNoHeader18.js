@@ -1,35 +1,40 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Get all immediate child dividers (each represents a row)
-  const rows = Array.from(element.querySelectorAll(':scope > div.divider'));
+  // Table (no header) block: 2 columns, 4 rows
+  // Get all divider blocks (each is a row)
+  const rows = Array.from(element.querySelectorAll(':scope > .divider'));
+  // Each divider contains a grid with two children: question and answer
+  const dataRows = rows.map(divider => {
+    const grid = divider.querySelector('.w-layout-grid');
+    if (!grid) return null;
+    const children = Array.from(grid.children);
+    // Defensive: expect [question, answer]
+    if (children.length < 2) return null;
+    // Extract full text content from each cell (not elements)
+    const questionText = children[0].textContent.trim();
+    const answerText = children[1].textContent.trim();
+    return [questionText, answerText];
+  }).filter(Boolean);
+
   // Table header row (block name)
   const headerRow = ['Table (no header)'];
-  // Prepare table rows
-  const tableRows = [headerRow];
-
-  rows.forEach((divider) => {
-    // Each divider contains a grid with two children: question and answer
-    const grid = divider.querySelector('.w-layout-grid');
-    if (!grid) return;
-    const cells = Array.from(grid.children);
-    if (cells.length < 2) return;
-    // Question (left column)
-    const question = cells[0];
-    // Answer (right column)
-    const answer = cells[1];
-    // Field comments (no model fields provided, so use generic names)
-    // You must ALWAYS add a field comment before content in each cell
-    const fragQ = document.createDocumentFragment();
-    fragQ.appendChild(document.createComment(' field:question '));
-    fragQ.appendChild(question);
-    const fragA = document.createDocumentFragment();
-    fragA.appendChild(document.createComment(' field:answer '));
-    fragA.appendChild(answer);
-    tableRows.push([fragQ, fragA]);
+  // Second row: table-2-columns
+  const variantRow = ['table-2-columns'];
+  // Data rows: each starts with 'table-col-2', then the two cells
+  const tableRows = dataRows.map(([question, answer]) => {
+    return ['table-col-2', question, answer];
   });
 
-  // Create table block
-  const block = WebImporter.DOMUtils.createTable(tableRows, document);
-  // Replace original element with the new block
+  // Compose table data
+  const cells = [
+    headerRow,
+    variantRow,
+    ...tableRows
+  ];
+
+  // Create the table block
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element
   element.replaceWith(block);
 }
