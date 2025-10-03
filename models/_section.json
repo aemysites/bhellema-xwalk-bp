@@ -59,7 +59,8 @@
         "table",
         "text",
         "title",
-        "video"
+        "video",
+        "library-metadata"
       ]
     }
   ]

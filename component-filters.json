@@ -24,7 +24,8 @@
       "table",
       "text",
       "title",
-      "video"
+      "video",
+      "library-metadata"
     ]
   },
   {
@@ -59,6 +60,10 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "library-metadata",
+    "components": []
   },
   {
     "id": "table",
