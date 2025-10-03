@@ -1,6 +1,13 @@
 /* stylelint-disable no-descending-specificity */
 .carousel .carousel-slides-container {
   position: relative;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  background: #fcfcfa;
+  padding: 100px 0;
 }
 
 .carousel .carousel-slides,
@@ -36,10 +43,12 @@
   position: relative;
   width: 240px;
   min-height: unset;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
+  background: #fff;
+  box-shadow: 0 24px 64px 0 rgb(41 38 28 / 21%);
+  border-radius: 24px;
   margin: 0;
+  z-index: 2;
+  transform: rotate(-7deg) scale(1.17);
 }
 
 .carousel .carousel-slide:has(.carousel-slide-content[data-align='center']) {
@@ -176,13 +185,15 @@
 }
 
 .carousel .carousel-slide .carousel-slide-image picture img {
-  width: 100%;
-  height: 170px;
+  width: 365px;
+  height: 255px;
   object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 2px 16px rgb(0 0 0 / 6%);
+  border-radius: 24px;
+  box-shadow: 0 15px 44px 0 rgb(41 38 28 / 33%);
   background: none;
   display: block;
+  border: none;
+  margin: 0;
 }
 
 .carousel .carousel-slide-content {
@@ -223,3 +234,91 @@
   margin-top: 10px;
   z-index: 1;
 }
+
+/* Three energetic card outlines */
+.carousel .carousel-slides-container::before,
+.carousel .carousel-slides-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  border-radius: 23px;
+  background: transparent;
+  z-index: 1;
+}
+
+.carousel .carousel-slides-container::before {
+  width: 390px;
+  height: 280px;
+  border: 2.5px solid #191919;
+  opacity: 0.42;
+  transform: translate(-56%, -48%) rotate(-14deg) skew(-2deg, 2deg);
+  box-shadow: 0 10px 24px 0 rgb(50 50 50 / 13%);
+}
+
+.carousel .carousel-slides-container::after {
+  width: 375px;
+  height: 260px;
+  border: 2.2px solid #232323;
+  opacity: 0.32;
+  transform: translate(-48%, -53%) rotate(8deg) skew(1deg, -2deg);
+  box-shadow: 0 4px 10px 0 rgb(50 50 50 / 7%);
+}
+
+/* Add a hand-drawn style third outline with a fill */
+.carousel .carousel-slides-container::marker {
+  content: "";
+  position: absolute;
+  left: 53%;
+  top: 52%;
+  width: 355px;
+  height: 242px;
+  border-radius: 25px;
+  background: #f0eee7;
+  opacity: 0.23;
+  border: 2.8px solid #a9a9a9;
+  z-index: 0;
+  transform: translate(-53%, -52%) rotate(-20deg) skew(-3deg, 1.2deg);
+  box-shadow: 0 15px 28px 0 rgb(120 110 80 / 10%);
+  display: block;
+}
+
+/* More pronounced overlapping card shapes using main slide pseudo-elements */
+.carousel .carousel-slide::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 32px;
+  width: 109%;
+  height: 106%;
+  border-radius: 20px;
+  background: #f7f6f2;
+  border: 2.5px solid #b8b8b8;
+  opacity: 0.32;
+  z-index: 0;
+  transform: rotate(-18deg) scale(1.09) skew(-1deg, 0.7deg);
+  box-shadow: 0 8px 30px 0 rgb(120 110 80 / 13%);
+  filter: blur(3px);
+}
+
+.carousel .carousel-slide::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: -26px;
+  width: 65px;
+  height: 88px;
+  border-radius: 13px;
+  background: #e7e6e2;
+  border: 2.2px solid #b9b9b9;
+  opacity: 0.55;
+  z-index: 1;
+  transform: rotate(18deg) scaleX(1.15) skew(-2deg, 1deg);
+  box-shadow: 0 5px 16px 0 rgb(120 110 80 / 18%);
+  filter: blur(2.5px);
+}
+
+/* Main image: even larger and more centered, with a bolder shadow */
+
+/* Hide nav/indicators for pure visuals */
